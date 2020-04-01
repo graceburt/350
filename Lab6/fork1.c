@@ -8,23 +8,36 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(){
+int myatoi(char *str)
+{
+	int num = 0;
+	int index = 0;
 
-	if(argc != 4){
+	while(str[index] != '\0')
+	{
+		num = (num * 10) + (str[index] - 48);
+		index++;
+	}
+	return num;
+}
 
-		printf("Number of arguments error!")
+int main(int argc, char *argv[]){
+
+	if(argc != 5){
+
+		printf("Number of arguments error!");
 		exit(1);
 	}
 
-	int nc = argv[1];
-	int np = argv[2];
-	int tc = argv[3];
-	int tp = argv[4];
+	int nc = myatoi(argv[1]);
+	int np = myatoi(argv[2]);
+	int tc = myatoi(argv[3]);
+	int tp = myatoi(argv[4]);
 
 	pid_t pid;
 	char* message;
+	int time;
 	int n;
-	int exit_code;
 
 	printf("fork program starting\n");
 	pid = fork();
@@ -34,40 +47,42 @@ int main(){
 		case -1:
 			perror("fork failed");
 			exit(1);
-		case 0:
+		case 0 :
 			message = "This is the child";
-			n = 5;
-			exit_code = 37;
+			n = nc;
+			time = tc;
 			break;
 		default:
 			message = "This is the parent";
-			n = 3;
-			exit_code = 0;
+			n = np;
+			time = tp;
 			break;
 		}
 
 	for(; n > 0; n--) {
 
 		puts(message);
-		sleep(1);
-		}
+		sleep(time);
 
-	if(pid != 0){
+	}
 
-		int stat_val;
-		pid_t child_pid;
+	// if(pid != 0){
 
-		child_pid = wait(&stat_val);
+	// 	pid_t child_pid;
 
-		printf("The child has finished: PID = %d\n", child_pid);
-		if( WIFEXITED(stat_val)){
-			printf("Child exited with code %d\n", WEXITSTATUS(stat_val));
-		}
-		else{
-			printf("Child terminated abnormally\n");
-		}
+	// 	child_pid = wait(tc);
 
-		exit(exit_code);
+	// 	printf("The child has finished: PID = %d\n", child_pid);
+	// 	if( WIFEXITED(tc)){
+	// 		printf("Child exited with code %d\n", WEXITSTATUS(tc));
+	// 	}
+	// 	else{
+	// 		printf("Child terminated abnormally\n");
+	// 	}
 
-		}
+
+	// 	}
+
+	exit(0);
+
 	}
