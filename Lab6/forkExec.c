@@ -71,35 +71,32 @@ int main(int argc, char *argv[]){
 			execlp("./child", argv[1], argv[3], "Parent is here", (char*)0);
 			break;
 		default:
-			message = "This is the parent";
-			n = np;
-			exit_code = tp;
+			for(; np > 0; np--)
+			{
+				printf("Parent ID = %d. \n", getpid());
+				sleep(tp);
+			}
 			break;
 		}
 
-	for(; n > 0; n--) {
+	if(pid != 0){
 
-		puts(message);
-		sleep(exit_code);
-	}
+		int stat_val;
+		pid_t child_pid;
 
-	// if(pid != 0){
+		child_pid = wait(&stat_val);
 
-	// 	pid_t child_pid;
-
-	// 	child_pid = wait(tc);
-
-	// 	printf("The child has finished: PID = %d\n", child_pid);
-	// 	if( WIFEXITED(tc)){
-	// 		printf("Child exited with code %d\n", WEXITSTATUS(tc));
-	// 	}
-	// 	else{
-	// 		printf("Child terminated abnormally\n");
-	// 	}
+		printf("The child has finished: PID = %d\n", child_pid);
+			if(WIFEXITED(stat_val)){
+				printf("Child exited with code %d\n", WEXITSTATUS(stat_val));
+			}
+			else{
+				printf("Child terminated abnormally\n");
+			}
 
 
-	// 	}
+		}
 
-	exit(0);
+	exit(exit_code);
 
 	}

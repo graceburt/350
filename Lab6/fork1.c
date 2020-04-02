@@ -66,23 +66,6 @@ int main(int argc, char *argv[]){
 
 	}
 
-	// if(pid != 0){
-
-	// 	pid_t child_pid;
-
-	// 	child_pid = wait(tc);
-
-	// 	printf("The child has finished: PID = %d\n", child_pid);
-	// 	if( WIFEXITED(tc)){
-	// 		printf("Child exited with code %d\n", WEXITSTATUS(tc));
-	// 	}
-	// 	else{
-	// 		printf("Child terminated abnormally\n");
-	// 	}
-
-
-	// 	}
-
 	exit(0);
 
 	}

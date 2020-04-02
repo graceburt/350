@@ -47,8 +47,7 @@ int main(int argc, char *argv[]){
 
 //makes parent wait for child process using wait() function
 //uses the child's id to identify what program needs to finish
-	
-	switch(pid) {
+	switch(pid){
 
 		case -1:
 			perror("fork failed");
@@ -71,25 +70,28 @@ int main(int argc, char *argv[]){
 	for(; n > 0; n--) {
 
 		puts(message);
-		sleep(exit_code);
+		sleep(time);
 
 	}
 
-	// if(pid != 0){
+	if(pid != 0){
 
-	// 	pid_t child_pid;
+		int stat_val;
+		pid_t child_pid;
 
-	// 	child_pid = wait(tc);
+		child_pid = wait(&stat_val);
 
-	// 	printf("The child has finished: PID = %d\n", child_pid);
-	// 	if( WIFEXITED(tc)){
-	// 		printf("Child exited with code %d\n", WEXITSTATUS(tc));
-	// 	}
-	// 	else{
-	// 		printf("Child terminated abnormally\n");
-	// 	}
+		printf("The child has finished: PID = %d\n", child_pid);
+			if(WIFEXITED(stat_val)){
+				printf("Child exited with code %d\n", WEXITSTATUS(stat_val));
+			}
+			else{
+				printf("Child terminated abnormally\n");
+			}
 
 
-	// 	}
+		}
+
+	exit(exit_code);
 
 }
