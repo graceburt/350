@@ -7,6 +7,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <fcntl.h>
 
 // Write a C program such that receives an input file name as an argument and open the file as inputs. 
 // And then create a child process. Input file must open only ONE time and the file descriptor is SHARED by parent and child process.
@@ -18,6 +19,11 @@
 // Define your own function to check numeric character. 
 // Do not use vfork(), sleep(), wait() or waitpid() for synchronization.
 // Check all possible errors for system calls
+
+//******What it does:
+//Child process reads in input file (cmd line arg) and 
+// prints it to child.txt 
+//parent process converts file to ASCII # and writes to parent.txt
 
 int isdigit(int c)
 {

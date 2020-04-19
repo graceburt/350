@@ -39,7 +39,7 @@ char* mygetenv(const char *name){
 			break;
 		}
 		else{
-
+			//else, move to next char and check there
 			*directory++;
 		}
 	}

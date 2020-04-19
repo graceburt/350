@@ -8,6 +8,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//Has parent and child process running, depending on value of nc (child process iterations)
+//and np (parent process iteration), is the amount each are printed out. tc is time for child to wait and tp is time for parent to wait.
+//run simultaneously! Just wait with time assigned (using sleep() not wait()!)
+
 int myatoi(char *str)
 {
 	int num = 0;
