@@ -1,0 +1,8 @@
+#### Studying for Midterm 2 
+
+### 04/19/2020
+
+allocex.c is example of dynamic memory allocation
+fork.c is example of forking
+env.c is example of environment variables
+proc.c is example of interprocess communication
